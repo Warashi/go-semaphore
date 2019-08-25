@@ -1,7 +1,6 @@
 package semaphore // import "github.com/Warashi/go-semaphore"
 
 import (
-	"context"
 	"sync"
 	"sync/atomic"
 )
@@ -49,24 +48,6 @@ func (s *NonFairSemaphore) Release() {
 	}
 	s.cond.Signal()
 	s.cond.L.Unlock()
-}
-
-func (s *NonFairSemaphore) TryAcquire(ctx context.Context) error {
-	got := make(chan struct{})
-	go func() {
-		s.Acquire()
-		got <- struct{}{}
-	}()
-	select {
-	case <-got:
-		return nil
-	case <-ctx.Done():
-		go func() {
-			<-got
-			s.Release()
-		}()
-		return ctx.Err()
-	}
 }
 
 func (s *NonFairSemaphore) IncreaseSize(n int64) int64 {
