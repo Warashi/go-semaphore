@@ -8,7 +8,6 @@ import (
 	"github.com/Warashi/go-semaphore"
 )
 
-
 func TestSemaphore_Release(t *testing.T) {
 	s := semaphore.NewNonFair(1)
 
@@ -71,7 +70,7 @@ func TestSemaphore_IncreaseSizeBulk(t *testing.T) {
 	}
 }
 
-func BenchmarkSemaphore(b *testing.B) {
+func BenchmarkNonFairSemaphore_Acquire(b *testing.B) {
 	const size = 10
 	s := semaphore.NewNonFair(size)
 	b.RunParallel(func(pb *testing.PB) {
@@ -82,26 +81,13 @@ func BenchmarkSemaphore(b *testing.B) {
 	})
 }
 
-func BenchmarkSemaphore_IncreaseSize(b *testing.B) {
+func BenchmarkNonFairSemaphore_IncreaseSize(b *testing.B) {
 	const size = 10
 	s := semaphore.NewNonFair(size)
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
 			s.Acquire()
 			s.IncreaseSize(1)
-		}
-	})
-}
-
-func BenchmarkSemaphore_Release_IncreaseSize(b *testing.B) {
-	const size = 10
-	s := semaphore.NewNonFair(size)
-	b.RunParallel(func(pb *testing.PB) {
-		for pb.Next() {
-			s.Acquire()
-			s.IncreaseSize(1)
-			s.Acquire()
-			s.Release()
 		}
 	})
 }
