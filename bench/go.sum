@@ -1,0 +1,4 @@
+github.com/Warashi/go-semaphore v0.0.0-20190825033213-e28c6ca15dda h1:Qce4/+oDq7YUcc3OVqH3M2K5+GnM+elaYREUjoM/2S8=
+github.com/Warashi/go-semaphore v0.0.0-20190825033213-e28c6ca15dda/go.mod h1:z9xGU99MERpShtoeBUS4gF+6ziKzAr0JKO9SNSD45hE=
+golang.org/x/sync v0.0.0-20190423024810-112230192c58 h1:8gQV6CLnAEikrhgkHFbMAEhagSSnXWGV915qUMm9mrU=
+golang.org/x/sync v0.0.0-20190423024810-112230192c58/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
